@@ -37,4 +37,25 @@
  * * add the event listener to the container, pass the callback.
  */
 
-// Your code goes here...
+const container = document.querySelector(".cardsContainer");
+let memory = JSON.parse(localStorage.getItem("highlighted"));
+container.addEventListener("click", (e) => {
+  const card = e.target.closest(".card");
+  const isfav = memory.includes(card.id);
+  isfav
+    ? (memory = memory.filter((id) => id !== card.id))
+    : memory.push(card.id);
+  card.dataset.fav = !isfav;
+  card.style.backgroundColor = !isfav ? "red" : "white";
+  localStorage.setItem("highlighted", JSON.stringify(memory));
+});
+
+function initBoxColors() {
+  [...container.children].forEach((card) => {
+    if (memory.includes(card.id)) {
+      card.dataset.fav = true;
+      card.style.backgroundColor = "red";
+    }
+  });
+}
+initBoxColors();
