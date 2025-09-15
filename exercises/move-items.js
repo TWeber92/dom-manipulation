@@ -43,12 +43,11 @@ const favs = document.getElementById("favs");
 function updateCollections(id, direction) {
   const child = document.getElementById(id);
   const icon = child.querySelector("i");
-  icon.classList = "";
-  direction === "toFavs"
-    ? favs.appendChild(child) &&
-      icon.classList.add("fa-solid", "fa-heart-crack")
-    : main.appendChild(child) &&
-      icon.classList.add("fa-solid", "fa-heart-circle-plus");
+  const isFavorite = direction === "toFavs";
+  (isFavorite ? favs : main).appendChild(child);
+  icon.className = isFavorite
+    ? "fa-solid fa-heart-crack"
+    : "fa-solid fa-heart-circle-plus";
 }
 
 /**

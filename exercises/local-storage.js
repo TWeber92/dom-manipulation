@@ -38,7 +38,7 @@
  */
 
 const container = document.querySelector(".cardsContainer");
-let memory = JSON.parse(localStorage.getItem("highlighted"));
+let memory = JSON.parse(localStorage.getItem("highlighted")) || [];
 container.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   const isfav = memory.includes(card.id);
